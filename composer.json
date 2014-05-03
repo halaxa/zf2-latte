@@ -1,0 +1,14 @@
+{
+    "name": "halaxa/zf2-latte",
+    "description": "Zf2 module for Latte templating engine integration",
+    "license": "BSD-3-Clause",
+    "keywords": [
+        "zf2",
+        "templates",
+        "latte"
+    ],
+    "homepage": "http://doc.nette.org/en/2.1/templating",
+    "require": {
+        "latte/latte": "2.2.*@dev"
+    }
+}
