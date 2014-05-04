@@ -23,7 +23,7 @@ return array(
 
         // Name of the translation service in the service manager.
         // For the time being it's expected to be a simple callable.
-        'translator' => 'zf2latte.underscore_translator',
+//        'translator' => 'zf2latte.underscore_translator',
 
         // disables ZF2 layout system. You can leverage the power of
         // Latte layouts directly in templates. Array results of actions

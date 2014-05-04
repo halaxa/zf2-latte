@@ -16,6 +16,9 @@ use Zend\ModuleManager\Feature\ConfigProviderInterface;
 use Zend\Mvc\MvcEvent;
 use Zend\View\Model\ViewModel;
 
+/**
+ * @todo onRender event?, n:macros, register zend filters and some helpers as latte filters?
+ */
 class Module implements ConfigProviderInterface, AutoloaderProviderInterface, BootstrapListenerInterface
 {
     /**

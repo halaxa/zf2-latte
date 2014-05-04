@@ -18,6 +18,11 @@ return array(
                 $sl->get('Zf2Latte\ZendHelpers')
             );
         },
+        'Zf2Latte\ZendHelpers' => function(ServiceLocatorInterface $sl) {
+            return new \Zf2Latte\ZendHelpers(
+                $sl->get('ViewHelperManager')
+            );
+        },
         'Zf2Latte\LatteResolver' => function(ServiceLocatorInterface $sl) {
             $config = $sl->get('config');
             return new \Zf2Latte\LatteResolver(
@@ -33,18 +38,10 @@ return array(
             }
             return $latteConfig;
         },
-        'zf2latte.underscore_translator' => function(){
-            return function($param) {
-                return '_'.$param;
-            };
-        },
         'Latte\Engine' => function(ServiceLocatorInterface $sl) {
             $engine = new \Latte\Engine();
-            $engine->addFilter('translate', $sl->get($sl->get('Zf2Latte\LatteConfig')->translator));
+            $engine->addFilter('translate', $sl->get('ViewHelperManager')->get('translate'));
             return $engine;
         }
     ),
-    'invokables' => array(
-        'Zf2Latte\ZendHelpers' => 'Zf2Latte\ZendHelpers'
-    )
 );

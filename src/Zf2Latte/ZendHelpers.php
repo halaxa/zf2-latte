@@ -58,8 +58,14 @@ use Zend\View\HelperPluginManager;
  */
 class ZendHelpers
 {
-    /** @var  HelperPluginManager */
+    /** @var  ServiceLocatorInterface */
     private $pluginManager;
+
+    function __construct(ServiceLocatorInterface $pluginManager)
+    {
+        $this->pluginManager = $pluginManager;
+    }
+
 
     /**
      * Overloading: proxy to helpers
@@ -99,9 +105,6 @@ class ZendHelpers
      */
     public function getPluginManager()
     {
-        if ( ! $this->pluginManager) {
-            $this->pluginManager = new HelperPluginManager();
-        }
         return $this->pluginManager;
     }
 
