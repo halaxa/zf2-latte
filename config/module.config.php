@@ -24,5 +24,11 @@ return array(
         // Name of the translation service in the service manager.
         // For the time being it's expected to be a simple callable.
         'translator' => 'zf2latte.underscore_translator',
+
+        // disables ZF2 layout system. You can leverage the power of
+        // Latte layouts directly in templates. Array results of actions
+        // will then be automatically wrapped in ViewModel to we can disable
+        // layout on int. Now the only way.
+        'disable_zend_layout' => true
     )
 );

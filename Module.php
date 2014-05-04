@@ -26,20 +26,36 @@ class Module implements ConfigProviderInterface, AutoloaderProviderInterface, Bo
      */
     public function onBootstrap(EventInterface $e)
     {
+        // disabling layouts
         if ($e instanceof MvcEvent) {
-            $disableLayouts = function (MvcEvent $e) {
-                $vm = $e->getResult();
-                if (!$vm instanceof ViewModel) {
-                    $vm = new ViewModel($vm);
-                    $e->setResult($vm);
-                }
-                $vm->setTerminal(true);
-            };
+            /** @var LatteConfig $latteConfig */
+            $latteConfig = $e->getApplication()->getServiceManager()->get('Zf2Latte\LatteConfig');
+
+            if ( ! $latteConfig->disable_zend_layout) {
+                return;
+            }
+
             $evm = $e->getApplication()->getEventManager();
-            $evm->attach(MvcEvent::EVENT_DISPATCH_ERROR, $disableLayouts);
+            $evm->attach(
+                MvcEvent::EVENT_DISPATCH_ERROR,
+                array($this, 'disableLayouts')
+            );
             $shm = $evm->getSharedManager();
-            $shm->attach('\Zend\Mvc\Controller\AbstractActionController', MvcEvent::EVENT_DISPATCH, $disableLayouts);
+            $shm->attach(
+                'Zend\Mvc\Controller\AbstractActionController',
+                MvcEvent::EVENT_DISPATCH,
+                array($this, 'disableLayouts')
+            );
         }
+    }
+
+    public function disableLayouts (MvcEvent $e) {
+        $vm = $e->getResult();
+        if (!$vm instanceof ViewModel) {
+            $vm = new ViewModel($vm);
+            $e->setResult($vm);
+        }
+        $vm->setTerminal(true);
     }
 
     /**
