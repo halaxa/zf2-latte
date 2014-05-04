@@ -29,15 +29,16 @@ class Module implements ConfigProviderInterface, AutoloaderProviderInterface, Bo
         if ($e instanceof MvcEvent) {
             $disableLayouts = function (MvcEvent $e) {
                 $vm = $e->getResult();
-                if ($vm instanceof ViewModel) {
-                    $vm->setTerminal(true);
+                if (!$vm instanceof ViewModel) {
+                    $vm = new ViewModel($vm);
+                    $e->setResult($vm);
                 }
+                $vm->setTerminal(true);
             };
-
             $evm = $e->getApplication()->getEventManager();
             $evm->attach(MvcEvent::EVENT_DISPATCH_ERROR, $disableLayouts);
             $shm = $evm->getSharedManager();
-            $shm->attach('Zend\Mvc\Controller\AbstractActionController', 'dispatch', $disableLayouts);
+            $shm->attach('\Zend\Mvc\Controller\AbstractActionController', MvcEvent::EVENT_DISPATCH, $disableLayouts);
         }
     }
 
