@@ -1,12 +1,13 @@
 {
-    "name": "zendframework/skeleton-application",
-    "description": "Skeleton Application for ZF2",
+    "name": "halaxa/zf2-latte",
+    "description": "Zf2 module for Latte templating engine integration",
     "license": "BSD-3-Clause",
     "keywords": [
-        "framework",
-        "zf2"
+        "zf2",
+        "templates",
+        "latte"
     ],
-    "homepage": "http://framework.zend.com/",
+    "homepage": "http://doc.nette.org/en/2.1/templating",
     "require": {
         "php": ">=5.3.3",
         "zendframework/zendframework": "2.*",
