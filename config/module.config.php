@@ -21,7 +21,7 @@ return array(
         'disable_zend_layout' => true,
 
         // If no temp is set, templates are parsed and eval'd every request.
-        'temp_directory' => __DIR__ . '/../../../data/cache',
+        'temp_directory' => __DIR__ . '/../../../../data/cache',
 
         // If true, templates are checked for changes and recompiled if needed.
         // Should be false on production.
