@@ -24,10 +24,15 @@ class LatteRenderer implements RendererInterface, TreeRendererInterface
     /** @var  ResolverInterface */
     private $resolver;
 
-    function __construct(Engine $engine, LatteResolver $resolver)
+    /** @var  ZendHelpers */
+    private $helpers;
+
+    function __construct(Engine $engine, LatteResolver $resolver, ZendHelpers $helpers)
     {
         $this->engine = $engine;
         $this->resolver = $resolver;
+        $this->helpers = $helpers;
+        $this->helpers->getPluginManager()->setRenderer($this);
     }
 
     /**
@@ -56,11 +61,20 @@ class LatteRenderer implements RendererInterface, TreeRendererInterface
     }
 
     /**
+     * @param string $name
+     */
+    public function plugin($name)
+    {
+        return $this->helpers->plugin($name);
+    }
+
+    /**
      * Processes a view script and returns the output.
      *
      * @param  string|ModelInterface   $nameOrModel The script/resource process, or a view model
      * @param  null|array|\ArrayAccess $values      Values to use during rendering
      * @return string The script output.
+     * @throws \LogicException
      */
     public function render($nameOrModel, $values = null)
     {
@@ -69,7 +83,11 @@ class LatteRenderer implements RendererInterface, TreeRendererInterface
             $name = $this->resolver->resolve($nameOrModel->getTemplate(), $this);
             $values = (array) $nameOrModel->getVariables();
         }
-        return $this->engine->renderToString($name, $values ?: array());
+        if (array_key_exists('helper', $values)) {
+            throw new \LogicException('Variable $helper is reserved for Zend helpers and can\'t be passed to view.');
+        }
+        $values['helper'] = $this->helpers;
+        return $this->engine->renderToString($name, $values);
     }
 
     /**
@@ -81,6 +99,4 @@ class LatteRenderer implements RendererInterface, TreeRendererInterface
     {
         return false;
     }
-
-
 }

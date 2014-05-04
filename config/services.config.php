@@ -15,7 +15,7 @@ return array(
             return new \Zf2Latte\LatteRenderer(
                 $sl->get('Latte\Engine'),
                 $sl->get('Zf2Latte\LatteResolver'),
-                $sl->get('Zf2Latte\LatteConfig')
+                $sl->get('Zf2Latte\ZendHelpers')
             );
         },
         'Zf2Latte\LatteResolver' => function(ServiceLocatorInterface $sl) {
@@ -44,4 +44,7 @@ return array(
             return $engine;
         }
     ),
+    'invokables' => array(
+        'Zf2Latte\ZendHelpers' => 'Zf2Latte\ZendHelpers'
+    )
 );
