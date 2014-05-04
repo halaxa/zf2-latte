@@ -9,9 +9,10 @@
     "homepage": "http://framework.zend.com/",
     "require": {
         "php": ">=5.3.3",
-        "zendframework/zendframework": "2.3.*",
-        "latte/latte": "2.2.*@dev",
-        "zf-commons/zfc-twig": "1.2.*",
+        "zendframework/zendframework": "2.*",
+        "latte/latte": "2.2.*@dev"
+    },
+    "require-dev": {
         "tracy/tracy": "dev-master"
     },
     "autoload": {
