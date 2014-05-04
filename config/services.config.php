@@ -39,8 +39,14 @@ return array(
             return $latteConfig;
         },
         'Latte\Engine' => function(ServiceLocatorInterface $sl) {
+            /** @var \Zf2Latte\LatteConfig $config */
+            $config = $sl->get('Zf2Latte\LatteConfig');
             $engine = new \Latte\Engine();
+
             $engine->addFilter('translate', $sl->get('ViewHelperManager')->get('translate'));
+            $engine->setTempDirectory($config->temp_directory);
+            $engine->setAutoRefresh($config->auto_refresh);
+
             return $engine;
         }
     ),

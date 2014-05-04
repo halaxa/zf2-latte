@@ -18,6 +18,7 @@ use Zend\View\Model\ViewModel;
 
 /**
  * @todo onRender event?, n:macros, register zend filters and some helpers as latte filters?
+ *       dump to bars?
  */
 class Module implements ConfigProviderInterface, AutoloaderProviderInterface, BootstrapListenerInterface
 {

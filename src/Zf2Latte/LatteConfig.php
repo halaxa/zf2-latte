@@ -13,12 +13,15 @@ use Latte\Object;
 
 class LatteConfig extends Object
 {
-    /** @var string  */
+    /** @var  string  */
     public $extension;
-
-    /** @var string */
-    public $translator;
 
     /** @var  bool */
     public $disable_zend_layout;
+
+    /** @var  string */
+    public $temp_directory;
+
+    /** @var  bool */
+    public $auto_refresh;
 }
