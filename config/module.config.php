@@ -25,8 +25,9 @@ return array(
         // Will be used as service for translations in {_} macro
         'translator_callback' => array('MvcTranslator', 'translate'),
 
-        // If no temp is set, templates are parsed and eval'd every request.
-        'temp_directory' => __DIR__ . '/../../../../data/cache',
+        // If no temp is set, templates are parsed and eval'd every request. Default setting
+        // relies on chdir() convention in index.php -> everything should be relative to the application root.
+        'temp_directory' => 'data/cache',
 
         // If true, templates are checked for changes and recompiled if needed.
         // Should be false on production.
