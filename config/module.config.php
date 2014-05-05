@@ -20,6 +20,11 @@ return array(
         // in ViewModel so we can disable layout on it. Now the only way.
         'disable_zend_layout' => true,
 
+        // Pseudo-callback: [name-of-service, method-name]
+        // Name of a service which can be obtained from service manager and a name of its method.
+        // Will be used as service for translations in {_} macro
+        'translator_callback' => array('MvcTranslator', 'translate'),
+
         // If no temp is set, templates are parsed and eval'd every request.
         'temp_directory' => __DIR__ . '/../../../../data/cache',
 

@@ -43,7 +43,10 @@ return array(
             $config = $sl->get('Zf2Latte\LatteConfig');
             $engine = new \Latte\Engine();
 
-            $engine->addFilter('translate', $sl->get('ViewHelperManager')->get('translate'));
+            $engine->addFilter('translate', array(
+                $sl->get($config->translator_callback[0]),
+                $config->translator_callback[1]
+            ));
             $engine->setTempDirectory($config->temp_directory);
             $engine->setAutoRefresh($config->auto_refresh);
 

@@ -20,6 +20,9 @@ class LatteConfig extends Object
     public $disable_zend_layout;
 
     /** @var  string */
+    public $translator_callback;
+
+    /** @var  string */
     public $temp_directory;
 
     /** @var  bool */
