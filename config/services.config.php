@@ -26,7 +26,7 @@ return array(
         'Zf2Latte\LatteResolver' => function(ServiceLocatorInterface $sl) {
             $config = $sl->get('config');
             return new \Zf2Latte\LatteResolver(
-                $config['view_manager']['template_map'],
+                $config['view_manager'],
                 $sl->get('Zf2Latte\LatteConfig')
             );
         },

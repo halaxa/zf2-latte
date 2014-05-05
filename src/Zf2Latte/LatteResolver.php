@@ -18,15 +18,15 @@ use Zend\View\Resolver\ResolverInterface;
 class LatteResolver implements ResolverInterface
 {
     /** @var  array */
-    private $templateMap;
+    private $viewConfig;
 
     /** @var LatteConfig  */
-    private $config;
+    private $latteConfig;
 
-    function __construct(array $templateMap, LatteConfig $config)
+    function __construct(array $viewConfig, LatteConfig $latteConfig)
     {
-        $this->templateMap = $templateMap;
-        $this->config = $config;
+        $this->viewConfig = $viewConfig;
+        $this->latteConfig = $latteConfig;
     }
 
     /**
@@ -41,9 +41,21 @@ class LatteResolver implements ResolverInterface
         if ($name === 'layout/layout') {
             return false;
         }
-        $tplPath = $this->templateMap[$name];
-        if (substr($tplPath, -strlen('.'.$this->config->extension)) === '.'.$this->config->extension) {
-            return $tplPath;
+        if (isset($this->viewConfig['template_map']) && isset($this->viewConfig['template_map'][$name])) {
+            $tplPath = $this->viewConfig['template_map'][$name];
+            if (substr($tplPath, -strlen('.'.$this->latteConfig->extension)) === '.'.$this->latteConfig->extension) {
+                return $tplPath;
+            }
+            return false;
+        }
+        if (isset($this->viewConfig['template_path_stack'])) {
+            $pathStack = $this->viewConfig['template_path_stack'];
+            foreach ($pathStack as $dir) {
+                $tplPath = realpath($dir . '/' . $name . '.' . $this->latteConfig->extension);
+                if (is_file($tplPath)) {
+                    return $tplPath;
+                }
+            }
         }
         return false;
     }
