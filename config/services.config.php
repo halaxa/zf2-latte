@@ -47,6 +47,10 @@ return array(
                 $sl->get($config->translator_callback[0]),
                 $config->translator_callback[1]
             ));
+
+            $set = \Latte\Macros\MacroSet::install($engine->getCompiler());
+            $set->addMacro('href', NULL, NULL, 'echo \' href="\' . $helper->url(%node.args) . \'"\'');
+
             $engine->setTempDirectory($config->temp_directory);
             $engine->setAutoRefresh($config->auto_refresh);
 

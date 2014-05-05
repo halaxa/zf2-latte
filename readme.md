@@ -12,12 +12,21 @@ Basic latte support works. Zend view helpers work by accessing `$helper` object 
 {$helper->headScript()} // will be printed and escaped
 {?$helper->headScript()} // will not be printed
 ```
+
 Layouts work. It also disables native layout in ZF, as Latte has great and simple support for them, also supporting multiple layouts depending on template.
+
 Translation macro `{_}` is configurable via ['translator_callback'](https://github.com/halaxa/zf2-latte/blob/master/config/module.config.php#L26) key.
+
 Loads `template_map` and `template_path_stack`.
 
+Uses `n:href` which maps to $helper->url(). Can be used like this even if you use PHP without short array syntax []:
+
+```latte
+<a n:href="application, [controller => application, action => index]">link</a>
+```
+
 ## What it does not (yet)
-Macros like `control`, `form` and similar are not present, as they are based on Nette internal components. Some nette specific n:macros like `n:href` don't yet work either but will be probably mapped to `$helper->url()`
+Macros like `control`, `form` and similar are not present, as they are based on Nette internal components.
 
 ## Installation
 Use Composer.
