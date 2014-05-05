@@ -8,9 +8,9 @@ This is not a stable solution yet. Feel free to participate on development:)
 ## What it does
 Basic latte support works. Zend view helpers work by accessing `$helper` object in template.
 
-```latte
-{$helper->headScript()} // will be printed and escaped
-{?$helper->headScript()} // will not be printed
+```smarty
+{$helper->headScript()} {* will be printed and escaped *}
+{?$helper->headScript()} {* will not be printed *}
 ```
 
 Layouts work. It also disables native layout in ZF, as Latte has great and simple support for them, also supporting multiple layouts depending on template.
@@ -19,9 +19,9 @@ Translation macro `{_}` is configurable via ['translator_callback'](https://gith
 
 Loads `template_map` and `template_path_stack`.
 
-Uses `n:href` which maps to $helper->url(). Can be used like this even if you use PHP without short array syntax []:
+Supports `n:href` which maps to `$helper->url()`. Can be used like this even if you use PHP without short array syntax []:
 
-```latte
+```smarty
 <a n:href="application, [controller => application, action => index]">link</a>
 ```
 
@@ -30,7 +30,7 @@ Macros like `control`, `form` and similar are not present, as they are based on 
 
 ## Installation
 Use Composer.
-```
+```json
 "require": {
     "halaxa/zf2-latte": "dev-master"
 }
