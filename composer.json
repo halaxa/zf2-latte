@@ -14,7 +14,8 @@
         "latte/latte": "2.2.*@dev"
     },
     "require-dev": {
-        "tracy/tracy": "dev-master"
+        "tracy/tracy": "dev-master",
+        "nette/tester": "~1.1"
     },
     "autoload": {
         "psr-0": {
