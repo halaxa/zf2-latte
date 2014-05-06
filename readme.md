@@ -13,7 +13,8 @@ Basic latte support works. Zend view helpers work by accessing `$helper` object 
 {?$helper->headScript()} {* will not be printed *}
 ```
 
-Layouts work. It also disables native layout in ZF, as Latte has great and simple support for them, also supporting multiple layouts depending on template.
+Layouts work. It by default disables native layout in ZF, as Latte has great and simple support for them, also supporting multiple layouts depending on template. If you still want to use default ZF layout system in some actions, you can. It disables is only if latte
+template is active template.
 
 Translation macro `{_}` is configurable via ['translator_callback'](https://github.com/halaxa/zf2-latte/blob/master/config/module.config.php#L26) key.
 
