@@ -19,8 +19,14 @@
     },
     "autoload": {
         "psr-0": {
-            "Zf2Latte\\": "src/"
+            "Zf2Latte": "src/"
         },
         "classmap": ["Module.php"]
+    },
+    "autoload-dev": {
+        "psr-0": {
+            "Application": "test/app/module/Application/src/"
+        },
+        "classmap": ["test/app/module/Application/Module.php"]
     }
 }
