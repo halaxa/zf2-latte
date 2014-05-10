@@ -15,11 +15,11 @@ function dd($var, $depth = 3) {
  * @return string
  */
 function runRoute($route) {
-    $_SERVER_OLD = $_SERVER;
-    $_SERVER = require __DIR__ . '/$_SERVER.php';
     if ($route[0] !== '/') {
         $route = '/' . $route;
     }
+    $_SERVER_OLD = $_SERVER;
+    $_SERVER = require __DIR__ . '/$_SERVER.php';
     $appConfig = require __DIR__ . '/app/application.config.php';
     Zend\Console\Console::overrideIsConsole(false);
     $app = Zend\Mvc\Application::init($appConfig);
