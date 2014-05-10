@@ -16,6 +16,6 @@ class IndexController extends AbstractActionController
 {
     public function indexAction()
     {
-        return array('list' => ['\'one', '<script>two</script>', '<h1>three']);
+        return array('list' => array('\'one', '<script>two</script>', '<h1>three'));
     }
 }
