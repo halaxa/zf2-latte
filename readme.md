@@ -32,9 +32,16 @@ Supports `n:href` which maps to `$helper->url()`. Can be used like this even if 
 Macros like `control`, `form` and similar are not present, as they are based on Nette internal components.
 
 ## Installation
-Use Composer.
+This is [composer](http://getcomposer.org) package. For **library instalation** include into your `composer.json` following line
 ```json
 "require": {
     "halaxa/zf2-latte": "dev-master"
 }
+```
+For **development installation** and running tests you can do something like:
+```bash
+composer create-project halaxa/zf2-latte zf2-latte dev-master --prefer-source --no-install --keep-vcs
+cd zf2-latte
+composer install --prefer-dist --dev
+./vendor/bin/tester test/tests
 ```
