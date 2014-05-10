@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/halaxa/zf2-latte.svg?branch=master)](https://travis-ci.org/halaxa/zf2-latte)
+
 # Latte integration module to Zend Framework 2
 
 [Latte](https://github.com/nette/latte) is state of the art templating system, part of [Nette framework](https://github.com/nette/nette), leaving others behind mainly in powerful XSS defence.
