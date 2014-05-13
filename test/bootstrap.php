@@ -1,5 +1,7 @@
 <?php
 
+use Zend\Stdlib\ArrayUtils;
+
 chdir(__DIR__ . '/app'); // index.php convention
 require __DIR__ . '/../vendor/autoload.php';
 Tester\Environment::setup();
@@ -14,7 +16,7 @@ function dd($var, $depth = 3) {
  * @param string $route
  * @return string
  */
-function runRoute($route) {
+function runRoute($route, $overrideConfig = []) {
     if ($route[0] !== '/') {
         $route = '/' . $route;
     }
@@ -25,9 +27,9 @@ function runRoute($route) {
     $_SERVER['PATH_INFO'] =  $route;
     $_SERVER['PHP_SELF'] = '/index.php'.$route;
 
-    $appConfig = require __DIR__ . '/app/application.config.php';
+    \Application\Module::$config = $overrideConfig;
     Zend\Console\Console::overrideIsConsole(false);
-    $app = Zend\Mvc\Application::init($appConfig);
+    $app = Zend\Mvc\Application::init(require __DIR__ . '/app/application.config.php');
     ob_start();
     $app->run();
     $result = ob_get_clean();
