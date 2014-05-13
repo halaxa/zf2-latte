@@ -15,6 +15,6 @@ class LatteController extends AbstractActionController
 {
     public function macroAction()
     {
-        return [];
+        return array();
     }
 }

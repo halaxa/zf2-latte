@@ -16,7 +16,7 @@ use Zend\Stdlib\ArrayUtils;
 
 class Module
 {
-    static $config = [];
+    static $config = array();
 
     public function onBootstrap(MvcEvent $e)
     {

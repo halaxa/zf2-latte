@@ -16,7 +16,7 @@ function dd($var, $depth = 3) {
  * @param string $route
  * @return string
  */
-function runRoute($route, $overrideConfig = []) {
+function runRoute($route, $overrideConfig = array()) {
     if ($route[0] !== '/') {
         $route = '/' . $route;
     }
