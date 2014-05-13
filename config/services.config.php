@@ -48,8 +48,10 @@ return array(
                 $config->translator_callback[1]
             ));
 
-            $set = \Latte\Macros\MacroSet::install($engine->getCompiler());
-            $set->addMacro('href', NULL, NULL, 'echo \' href="\' . $helper->url(%node.args) . \'"\'');
+            $engine->onCompile[] = function ($engine) {
+                $set = \Latte\Macros\MacroSet::install($engine->getCompiler());
+                $set->addMacro('href', NULL, NULL, 'echo \' href="\' . $helper->url(%node.args) . \'"\'');
+            };
 
             $engine->setTempDirectory($config->temp_directory);
             $engine->setAutoRefresh($config->auto_refresh);
